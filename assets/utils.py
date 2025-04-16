@@ -24,3 +24,19 @@ def calculate_route_distance(route: List[int], cities: List[City]) -> float:
         total_distance += from_city.distance(to_city)
 
     return total_distance
+
+def create_initial_population(population_size: int, num_cities: int) -> List[List[int]]:
+    population = []
+    city_indices = list(range(num_cities))
+    
+    for _ in range(population_size):
+        route = city_indices.copy()
+        random.shuffle(route)
+        population.append(route)
+        
+    return population
+
+
+def calculate_fitness(route: List[int], cities: List[City]) -> float:
+    distance = calculate_route_distance(route, cities)
+    return 1.0 / (distance + 1e-10)
