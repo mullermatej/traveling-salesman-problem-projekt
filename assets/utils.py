@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from city import City
+from assets.city import City
 
 
 def generate_cities(num_cities: int, min_coord: float = 0, max_coord: float = 100) -> List[City]:
@@ -39,22 +39,5 @@ def create_initial_population(population_size: int, num_cities: int) -> List[Lis
 
 
 def calculate_fitness(route: List[int], cities: List[City]) -> float:
-    distance = calculate_route_distance(route, cities)
-    return 1.0 / (distance + 1e-10)
-
-
-def create_initial_population(population_size, num_cities):
-    population = []
-    city_indices = list(range(num_cities))
-
-    for _ in range(population_size):
-        route = city_indices.copy()
-        random.shuffle(route)
-        population.append(route)
-
-    return population
-
-
-def calculate_fitness(route, cities):
     distance = calculate_route_distance(route, cities)
     return 1.0 / (distance + 1e-10)
